@@ -13,11 +13,16 @@
       <h2>{{ package.packageName }}</h2>
       <p>{{ package.description }}</p>
       <p> <b>Country:</b>  {{ package.countryName }}</p>
-      <p> <b>Number of Travelers: </b>{{selectedTravelers}}</p>
+
+      <b>Number of Travelers: </b>
+      <input type="number" class="input-field short" id="travelers" formControlName="travelers" placeholder="Travelers" [min]=1
+        [value]="selectedTravelers || 1" (input)="updateSelectedTravelers($event) ">
+      <!-- <p> <b>Number of Travelers: </b>{{selectedTravelers}}</p> -->
+
       <p><b>Cost per Person: </b> ${{ package.costPerPerson }}</p>
       
-      <b>Date of Travel:</b> 
-      <input type="date" class="input-field" id="check-in" formControlName="date" [min]="selectedDate"
+      <b>Date of Travel: </b> 
+      <input type="date" class="input-field" id="check-in" formControlName="date" [min]="currentDate"
         placeholder="Check-in Date" [value]="selectedDate || getCurrentDate()" (change)="updateSelectedDate($event)">
 
 
