@@ -6,9 +6,7 @@ import { ConfirmBookingModalComponent } from '../confirm-booking-modal/confirm-b
 import { TraveldataService } from '../services/traveldata.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-
-
-
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-package-detail',
@@ -16,8 +14,9 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
   styleUrls: ['./package-detail.component.css']
 })
 export class PackageDetailComponent implements OnInit {
-  // currentDate: string; 
-  selectedTravelers: number;
+  currentDate: string;
+  searchForm: FormGroup;
+  selectedTravelers: number = 1; // Default to 1 if not defined
   selectedDate: string;
   package: TourPackage | undefined;
   totalCost: number = 0;
@@ -44,7 +43,8 @@ export class PackageDetailComponent implements OnInit {
           this.costPerPerson = tourPackage.costPerPerson;
 
           this.traveldataService.getSelectedSearchDetails().subscribe((details) => {
-            this.selectedTravelers = details.travelers;
+            this.selectedTravelers = details.travelers || 1; // Default to 1 if not defined
+            this.currentDate = this.getCurrentDate();
             this.selectedDate = details.date;
             this.calculateTotal();
           });
@@ -54,15 +54,19 @@ export class PackageDetailComponent implements OnInit {
     }
   }
 
-  getCurrentDate(): string {
-  if (this.selectedDate) {
-    return this.selectedDate;
-  } else {
-    const today = new Date();
-    return today.toISOString().split('T')[0];
+  getCurrentDate_(): string {
+       const today = new Date();
+      return today.toISOString().split('T')[0];
+    
   }
-}
-
+  getCurrentDate(): string {
+    if (this.selectedDate) {
+      return this.selectedDate;
+    } else {
+      const today = new Date();
+      return today.toISOString().split('T')[0];
+    }
+  }
 
   calculateTotal() {
     if (this.package && this.selectedTravelers) {
@@ -102,5 +106,14 @@ export class PackageDetailComponent implements OnInit {
 
   updateSelectedDate(event: any) {
     this.selectedDate = event.target.value;
+  }
+
+  updateSelectedTravelers(event: any) {
+    const value = (event.target as HTMLInputElement).value;
+    const parsedValue = parseInt(value, 10);
+    if (!isNaN(parsedValue)) {
+      this.selectedTravelers = parsedValue;
+      this.calculateTotal(); // Recalculate total cost
+    }
   }
 }
