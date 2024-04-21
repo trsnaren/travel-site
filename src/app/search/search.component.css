@@ -1,0 +1,90 @@
+.search-container {
+  position: absolute; /* Fixed if you want it to stay in place during scroll */
+  left: 50%; /* Center horizontally */
+  top: 50%; /* Center vertically */
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 650px; /* Or any width you prefer */
+}
+
+
+.search-box {
+  background: rgba(255, 255, 255, 1); 
+  padding: 6px 20px;
+  display: flex;
+  align-items: center;
+  border-radius: 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 960px;
+  justify-content: space-evenly;
+}
+
+.search-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.input-field {
+  background: transparent;
+  border: none;
+  padding: 8px 10px;
+  color: #333;
+  font-size: 16px;
+  margin: 0 5px;
+  width: 150px; 
+}
+.short{
+  padding: 4px 4px;
+  width: 90px;
+}
+
+.find-tours-btn {
+
+  background-color: #d4bab1; 
+  color: #FFFFFF;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  cursor: not-allowed;
+}
+
+.find-tours-btn:hover {
+  background-color: #d5b2a7;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.vertical-line {
+  height: 25px;
+  border-left: 2px solid #333; 
+  margin: 0 10px; 
+}
+.explore{
+  background-color: white;
+  padding: 10px 6px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.disabled-hover:hover {
+  background-color: #d4bab1 !important;
+  box-shadow: none !important;
+}
+
+.find-tours-btn.enabled {
+  background-color: #d4bab1; /* Color indicating button is clickable */
+  cursor: pointer;/* Change cursor to pointer when button is enabled */
+  box-shadow: #333;
+  color: rgba(0, 0, 0, 0.436);
+}
+
+.find-tours-btn:hover:not(.enabled) {
+  cursor: not-allowed;
+  /* Change cursor to not-allowed when button is not enabled */
+}

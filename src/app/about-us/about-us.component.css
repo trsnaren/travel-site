@@ -1,0 +1,93 @@
+.about-us-container {
+    background-color: #f8f8f8;
+    padding: 80px 40px;
+  }
+  
+  .about-us-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 40px;
+  }
+  
+  .about-us-header h1 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #333;
+  }
+  
+  .about-us-header p {
+    font-size: 18px;
+    color: #666;
+  }
+  
+  .about-us-content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .about-text {
+    flex: 0 0 40%;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+  }
+  
+  .about-text h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #333;
+  }
+  
+  .about-text p {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.6;
+  }
+  
+  .about-carousel {
+    flex: 0 0 50%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .carousel-item {
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+  }
+  
+  .carousel-image {
+    flex: 0 0 50%;
+  }
+  
+  .carousel-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  .carousel-text {
+    flex: 0 0 50%;
+    padding: 40px;
+  }
+  
+  .carousel-text h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #333;
+  }
+  
+  .carousel-text p {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.6;
+  }
+  

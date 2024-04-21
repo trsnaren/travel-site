@@ -1,0 +1,23 @@
+.bookings-container {
+    padding: 20px;
+  }
+  
+  .booking-card {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .booking-card h3 {
+    margin: 0 0 10px 0;
+  }
+  
+  .booking-card p {
+    margin: 5px 0;
+  }
+  
+  h2 {
+    text-align: center;
+  }
+  

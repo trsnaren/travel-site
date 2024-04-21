@@ -1,0 +1,30 @@
+<app-navbar></app-navbar>
+ 
+<div *ngIf="package" class="package-details">
+  <div class="details-container">
+    <!-- Image -->
+    <div class="image-container">
+      <img [src]="package.imageUrl2" alt="{{ package.packageName }}">
+    </div>
+ 
+    <!-- Package Information -->
+    <div class="info-container">
+      
+      <h2>{{ package.packageName }}</h2>
+      <p>{{ package.description }}</p>
+      <p> <b>Country:</b>  {{ package.countryName }}</p>
+      <p> <b>Number of Travelers: </b>{{selectedTravelers}}</p>
+      <p><b>Cost per Person: </b> ${{ package.costPerPerson }}</p>
+      <p *ngIf="selectedDate != ''">  <b>Date of Travel:</b> {{ selectedDate | date:'dd-MM-yyyy' }}</p>
+      <p *ngIf="totalCost != 0"> <b>Total Cost:</b> $ {{totalCost}} </p>
+      <button class="confirm-button" (click)="openConfirmBookingModal()">Confirm Booking</button>
+      <app-confirm-booking-modal (confirmation)="handleConfirmation($event)"[packageName]="package?.packageName || ''"></app-confirm-booking-modal>
+ 
+    </div>
+  </div>
+</div>
+<h1> Itinerary </h1>
+<app-confirm-booking-modal (confirmation)="handleConfirmation($event)"></app-confirm-booking-modal>
+ 
+<app-timeline></app-timeline>
+<app-footer></app-footer>

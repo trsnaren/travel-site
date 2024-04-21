@@ -1,0 +1,95 @@
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 500;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(50, 50, 50, 0.8); /* Neutral background color */
+  padding-top: 80px;
+}
+ 
+ 
+.modal-content {
+  background-color: #2c2c2c; /* Dark neutral background */
+  margin: 5% auto; /* Centered with a top margin */
+  padding: 40px; /* Increased padding for better spacing */
+  border: 1px solid #444; /* Subtle border for depth */
+  border-radius: 8px; /* Rounded corners */
+  width: 90%; /* Responsive width */
+  max-width: 700px; /* Increased maximum width */
+  color: #d3d3d3; /* Light text for contrast */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+  display: flex; /* Flex layout to center children */
+  flex-direction: column; /* Stack children vertically */
+  align-items: center; /* Center-align the content horizontally */
+}
+ 
+ 
+/* ... */
+ 
+.btn-primary {
+  background-color: #4a4a4a; /* Dark button background */
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  width: auto; /* Auto width to fit content */
+  border-radius: 100px; /* Rounded edges */
+  font-size: 16px;
+  text-align: center;
+  transition: background-color 0.3s ease; /* Smooth transition for hover */
+}
+ 
+.btn-primary:hover {
+  background-color: #626262; /* Slightly lighter on hover */
+}
+ 
+.close {
+  color: #aaaaaa; /* Lighter close button for better visibility */
+  cursor: pointer;
+  font-size: 24px;
+  background: none;
+  border: none;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+ 
+/* ... */
+ 
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+ 
+.modal-content form {
+  width: 100%;
+}
+ 
+.modal-content form .form-group {
+  margin-bottom: 1rem;
+}
+ 
+/* Adding animation to the modal for a smooth entrance */
+.modal.show {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s;
+}
+ 
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+ 
+.modal-content input[type="text"],
+.modal-content input[type="email"],
+.modal-content input[type="tel"] {
+  width: 270px; /* Full width to accommodate longer text */
+  /* Rest of the properties remain unchanged */
+}
