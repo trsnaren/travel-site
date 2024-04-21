@@ -115,4 +115,7 @@
     color: blue;
     cursor: pointer;
   }
+  .kia{
+    display: flex;
+  }
   

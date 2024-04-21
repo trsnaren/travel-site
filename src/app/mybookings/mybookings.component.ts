@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
+import { AuthService } from '../shared/auth.service';
 
 @Component({
   selector: 'app-mybookings',
@@ -10,12 +11,15 @@ import { map, switchMap } from 'rxjs/operators';
   styleUrls: ['./mybookings.component.css']
 })
 export class MybookingsComponent implements OnInit {
+ 
   bookings$: Observable<any[]>;
 
   constructor(
     private afs: AngularFirestore,
-    private afAuth: AngularFireAuth
+    private afAuth: AngularFireAuth,
+    private authService : AuthService
   ) {
+    this.authService = authService;
     this.bookings$ = this.afAuth.authState.pipe(
       switchMap((user) => {
         if (user) {
@@ -38,6 +42,11 @@ export class MybookingsComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+ 
+  get isLoggedIn() {
+    return this.authService.isLoggedIn();
+  }
+  
   cancelBooking(bookingId: string) {
     this.afAuth.currentUser.then((user) => {
       if (user) {
@@ -56,5 +65,6 @@ export class MybookingsComponent implements OnInit {
     });
   }
   
+ 
   
 }

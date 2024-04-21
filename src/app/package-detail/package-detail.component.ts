@@ -6,6 +6,7 @@ import { ConfirmBookingModalComponent } from '../confirm-booking-modal/confirm-b
 import { TraveldataService } from '../services/traveldata.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AuthService } from '../shared/auth.service';
 
 
 
@@ -21,6 +22,7 @@ export class PackageDetailComponent implements OnInit {
   package: TourPackage | undefined;
   totalCost: number = 0;
   costPerPerson: number;
+  buttonClicked = false;
 
   @ViewChild(ConfirmBookingModalComponent) confirmModal: ConfirmBookingModalComponent;
 
@@ -29,8 +31,11 @@ export class PackageDetailComponent implements OnInit {
     private tourPackagesService: TourPackagesService,
     private traveldataService: TraveldataService,
     private afs: AngularFirestore,
-    private afAuth: AngularFireAuth
-  ) {}
+    private afAuth: AngularFireAuth,
+    private authService : AuthService
+  ) {
+    this.authService = authService;
+  }
 
   ngOnInit() {
     const packageId = this.route.snapshot.paramMap.get('id');
@@ -58,7 +63,10 @@ export class PackageDetailComponent implements OnInit {
       this.totalCost = this.costPerPerson * this.selectedTravelers;
     }
   }
-
+ 
+  onClick() {
+    this.buttonClicked = true;
+  }
   openConfirmBookingModal() {
     const bookingData = {
       packageName: this.package?.packageName,
@@ -87,5 +95,8 @@ export class PackageDetailComponent implements OnInit {
 
   handleConfirmation({ email, phone }: { email: string; phone: string }) {
     console.log('Booking confirmed for:', email, phone);
+  }
+  get isLoggedIn() {
+    return this.authService.isLoggedIn();
   }
 }
