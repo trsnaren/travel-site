@@ -16,6 +16,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
   styleUrls: ['./package-detail.component.css']
 })
 export class PackageDetailComponent implements OnInit {
+  // currentDate: string; 
   selectedTravelers: number;
   selectedDate: string;
   package: TourPackage | undefined;
@@ -53,6 +54,16 @@ export class PackageDetailComponent implements OnInit {
     }
   }
 
+  getCurrentDate(): string {
+  if (this.selectedDate) {
+    return this.selectedDate;
+  } else {
+    const today = new Date();
+    return today.toISOString().split('T')[0];
+  }
+}
+
+
   calculateTotal() {
     if (this.package && this.selectedTravelers) {
       this.totalCost = this.costPerPerson * this.selectedTravelers;
@@ -87,5 +98,9 @@ export class PackageDetailComponent implements OnInit {
 
   handleConfirmation({ email, phone }: { email: string; phone: string }) {
     console.log('Booking confirmed for:', email, phone);
+  }
+
+  updateSelectedDate(event: any) {
+    this.selectedDate = event.target.value;
   }
 }
