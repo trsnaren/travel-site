@@ -35,9 +35,7 @@ export class PackageDetailComponent implements OnInit {
     private afs: AngularFirestore,
     private afAuth: AngularFireAuth,
     private authService : AuthService
-  ) {
-    this.authService = authService;
-  }
+  ) {}
  
   ngOnInit() {
     const packageId = this.route.snapshot.paramMap.get('id');
@@ -113,6 +111,11 @@ export class PackageDetailComponent implements OnInit {
  
   updateSelectedDate(event: any) {
     this.selectedDate = event.target.value;
+    this.traveldataService.updateSelectedSearchDetails({
+      region: '',
+      travelers: this.selectedTravelers,
+      date: this.selectedDate
+    });
   }
  
   updateSelectedTravelers(event: any) {
@@ -121,17 +124,23 @@ export class PackageDetailComponent implements OnInit {
     if (!isNaN(parsedValue)) {
       this.selectedTravelers = parsedValue;
       this.calculateTotal(); // Recalculate total cost
+      this.traveldataService.updateSelectedSearchDetails({
+        region: '',
+        travelers: this.selectedTravelers,
+        date: this.selectedDate
+      });
     }
 
   }
   onClick() {
     this.buttonClicked = true;
   }
+
   get isLoggedIn() {
     return this.authService.isLoggedIn();
   }
+
   onTravelersAdded() {
     this.hasTravelersAdded = true;
   }
-
 }
