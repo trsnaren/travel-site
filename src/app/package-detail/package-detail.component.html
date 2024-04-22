@@ -37,7 +37,7 @@
         <button class="confirm-button" (click)="openConfirmBookingModal()" [disabled]="!onTravelersAdded" [title]="cnfrm">Confirm Booking</button>
       </div>
       
-      <app-confirm-booking-modal (confirmation)="handleConfirmation($event)"[packageName]="package?.packageName || ''"></app-confirm-booking-modal>
+      <app-confirm-booking-modal (confirmation)="handleConfirmation($event)"[packageName]="package.packageName || ''"></app-confirm-booking-modal>
  
     </div>
   </div>
