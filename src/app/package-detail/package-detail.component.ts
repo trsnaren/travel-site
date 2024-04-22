@@ -22,7 +22,8 @@ export class PackageDetailComponent implements OnInit {
   package: TourPackage | undefined;
   totalCost: number = 0;
   costPerPerson: number;
-  buttonClicked = false;
+  hasTravelersAdded: boolean = false;
+  cnfrm: string = "Add Travelers to proceed with Confirmation";
 
   @ViewChild(ConfirmBookingModalComponent) confirmModal: ConfirmBookingModalComponent;
 
@@ -56,6 +57,9 @@ export class PackageDetailComponent implements OnInit {
         }
       }
     }
+  }
+  onTravelersAdded() {
+    this.hasTravelersAdded = true;
   }
 
   calculateTotal() {
