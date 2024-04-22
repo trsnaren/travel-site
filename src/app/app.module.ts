@@ -53,6 +53,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { MybookingsComponent } from './mybookings/mybookings.component';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { WeatherComponent } from './weather/weather.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ExploreWeatherComponent } from './explore-weather/explore-weather.component';
 
 
 
@@ -89,6 +92,8 @@ import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/compat/f
     LoginComponent,
     ProfileComponent,
     MybookingsComponent,
+    WeatherComponent,
+    ExploreWeatherComponent,
 
     // ParallaxEffectComponent,
   ],
@@ -106,6 +111,7 @@ import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/compat/f
     
     AngularFireAuthModule,
     AngularFirestoreModule,
+    HttpClientModule,
     
     
    
