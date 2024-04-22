@@ -8,7 +8,7 @@
           <h3>{{ booking.data.packageName }}</h3>
           <p>Description: {{ booking.data.description }}</p>
           <p>Country: {{ booking.data.countryName }}</p>
-          <p>Date: {{ booking.data.selectedDate | date }}</p>
+          <p>Date: {{ booking.data.selectedDate ? (booking.data.selectedDate | date) : (getCurrentDate() | date) }}</p>
           <p>Travelers: {{ booking.data.selectedTravelers }}</p>
           <p>Total Cost: {{ booking.data.totalCost }}</p>
           <button (click)="cancelBooking(booking.id)">Cancel Booking</button>
@@ -30,3 +30,5 @@
 <ng-template #loading>
   <p>Loading...</p>
 </ng-template>
+
+<app-footer></app-footer>
