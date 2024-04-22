@@ -20,7 +20,7 @@
       <b>Number of Travelers: </b>
       <input type="number" class="input-field short" id="travelers" formControlName="travelers" placeholder="Travelers" [min]=1
         [value]="selectedTravelers || 1" (input)="updateSelectedTravelers($event) ">
-      <!-- <p> <b>Number of Travelers: </b>{{selectedTravelers}}</p> -->
+      <p> <b>Number of Travelers: </b>{{selectedTravelers}}</p>
  
       <p><b>Cost per Person: </b> ${{ package.costPerPerson }}</p>
      
@@ -45,14 +45,46 @@
 
         <button class="confirm-button" *ngIf="isLoggedIn" (click)="openConfirmBookingModal()" [disabled]="!onTravelersAdded" [title]="cnfrm">Confirm Booking</button>
       </div>
-      
-      
+     
       <app-confirm-booking-modal (confirmation)="handleConfirmation($event)"[packageName]="package?.packageName || ''"></app-confirm-booking-modal>
  
     </div>
   </div>
+ 
 </div>
+ 
+  <mat-horizontal-stepper>
+    <mat-step label="Step 1" state="phone">
+      <app-timeline></app-timeline>
+      <!-- <p>Put down your phones.</p> -->
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </mat-step>
+    <mat-step label="Step 2" state="chat">
+      <app-travelers-info></app-travelers-info>
+      <!-- <p>Socialize with each other.</p> -->
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </mat-step>
+    <mat-step label="Step 3">
+      <p>You're welcome.</p>
+    </mat-step>
+ 
+    <!-- Icon overrides. -->
+    <ng-template matStepperIcon="phone">
+      <mat-icon>call_end</mat-icon>
+    </ng-template>
+    <ng-template matStepperIcon="chat">
+      <mat-icon>forum</mat-icon>
+    </ng-template>
+  </mat-horizontal-stepper>
+ 
+ 
+<!-- <h1> Itinerary </h1> -->
 <app-confirm-booking-modal (confirmation)="handleConfirmation($event)"></app-confirm-booking-modal>
-
-<app-timeline></app-timeline>
-<app-footer></app-footer>  
+ 
+<!-- <app-timeline></app-timeline> -->
+<app-footer></app-footer>

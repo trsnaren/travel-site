@@ -6,13 +6,20 @@ import { ConfirmBookingModalComponent } from '../confirm-booking-modal/confirm-b
 import { TraveldataService } from '../services/traveldata.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { FormGroup } from '@angular/forms';
 import { AuthService } from '../shared/auth.service';
- 
+import { FormGroup } from '@angular/forms';
+import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
+import { FormBuilder,Validators } from '@angular/forms';
+
+
+
 @Component({
   selector: 'app-package-detail',
   templateUrl: './package-detail.component.html',
-  styleUrls: ['./package-detail.component.css']
+  styleUrls: ['./package-detail.component.scss'],
+  providers: [{
+    provide: STEPPER_GLOBAL_OPTIONS, useValue: {displayDefaultIndicatorType: false}
+  }]
 })
 export class PackageDetailComponent implements OnInit {
   currentDate: string;
@@ -24,6 +31,7 @@ export class PackageDetailComponent implements OnInit {
   costPerPerson: number;
   buttonClicked : boolean = false;
   hasTravelersAdded: boolean = false;
+  secondFormGroup: FormGroup;
   cnfrm: string = "Add Travelers to proceed with Confirmation";
  
   @ViewChild(ConfirmBookingModalComponent) confirmModal: ConfirmBookingModalComponent;
@@ -35,8 +43,10 @@ export class PackageDetailComponent implements OnInit {
     private afs: AngularFirestore,
     private afAuth: AngularFireAuth,
     private authService : AuthService
-  ) {}
- 
+  ) {
+    this.authService = authService;
+  }
+
   ngOnInit() {
     const packageId = this.route.snapshot.paramMap.get('id');
     if (packageId) {
@@ -58,7 +68,7 @@ export class PackageDetailComponent implements OnInit {
       }
     }
   }
- 
+  
   getCurrentDate_(): string {
        const today = new Date();
       return today.toISOString().split('T')[0];
