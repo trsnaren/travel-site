@@ -7,6 +7,7 @@ import { TraveldataService } from '../services/traveldata.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormGroup } from '@angular/forms';
+import { AuthService } from '../shared/auth.service';
  
 @Component({
   selector: 'app-package-detail',
@@ -21,6 +22,9 @@ export class PackageDetailComponent implements OnInit {
   package: TourPackage | undefined;
   totalCost: number = 0;
   costPerPerson: number;
+  buttonClicked : boolean = false;
+  hasTravelersAdded: boolean = false;
+  cnfrm: string = "Add Travelers to proceed with Confirmation";
  
   @ViewChild(ConfirmBookingModalComponent) confirmModal: ConfirmBookingModalComponent;
  
@@ -29,8 +33,11 @@ export class PackageDetailComponent implements OnInit {
     private tourPackagesService: TourPackagesService,
     private traveldataService: TraveldataService,
     private afs: AngularFirestore,
-    private afAuth: AngularFireAuth
-  ) {}
+    private afAuth: AngularFireAuth,
+    private authService : AuthService
+  ) {
+    this.authService = authService;
+  }
  
   ngOnInit() {
     const packageId = this.route.snapshot.paramMap.get('id');
@@ -115,5 +122,16 @@ export class PackageDetailComponent implements OnInit {
       this.selectedTravelers = parsedValue;
       this.calculateTotal(); // Recalculate total cost
     }
+
   }
+  onClick() {
+    this.buttonClicked = true;
+  }
+  get isLoggedIn() {
+    return this.authService.isLoggedIn();
+  }
+  onTravelersAdded() {
+    this.hasTravelersAdded = true;
+  }
+
 }
