@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { TraveldataService } from '../services/traveldata.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 interface Traveler {
   name: string;
   age: number;
@@ -18,15 +21,28 @@ export class TravelersInfoComponent implements OnInit{
   travelerForm: FormGroup;
   travelers: Traveler[] = [];
   editIndex: number = -1;
+  selectedTravelers: number = 1;
+  private subscription: Subscription | null = null;
 
   constructor(
     private formBuilder: FormBuilder,
-    private traveldataService: TraveldataService
+    private traveldataService: TraveldataService,
+    private route: Router,
+    private location: Location
   ) { }
 
   ngOnInit() {
     this.initForm();
-    this.loadTravelers();
+    // this.loadTravelers();
+    this.subscription = this.traveldataService.getSelectedSearchDetails().subscribe(details => {
+      this.selectedTravelers = details.travelers;
+    });
+    
+  }
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   initForm() {
@@ -38,24 +54,29 @@ export class TravelersInfoComponent implements OnInit{
     });
   }
 
-  loadTravelers() {
-    const savedTravelers = localStorage.getItem('travelers');
-    if (savedTravelers) {
-      this.travelers = JSON.parse(savedTravelers);
-    }
-  }
+  // loadTravelers() {
+  //   const savedTravelers = localStorage.getItem('travelers');
+  //   if (savedTravelers) {
+  //     this.travelers = JSON.parse(savedTravelers);
+  //   }
+  // }
 
   saveTraveler() {
     if (this.travelerForm.valid) {
-      const formValues = this.travelerForm.value;
-      if (this.editIndex === -1) {
-        this.travelers.push(formValues);
+      if (this.travelers.length < this.selectedTravelers) {
+        const formValues = this.travelerForm.value;
+        if (this.editIndex === -1) {
+          this.travelers.push(formValues);
+        } else {
+          this.travelers[this.editIndex] = formValues;
+          this.editIndex = -1;
+        }
+        localStorage.setItem('travelers', JSON.stringify(this.travelers));
+        this.travelerForm.reset();
       } else {
-        this.travelers[this.editIndex] = formValues;
-        this.editIndex = -1;
+        // Show an error message or take appropriate action
+        alert('You have reached the maximum number of travelers allowed.');
       }
-      localStorage.setItem('travelers', JSON.stringify(this.travelers));
-      this.travelerForm.reset();
     }
   }
 
@@ -73,6 +94,9 @@ export class TravelersInfoComponent implements OnInit{
   gettravelerCount() {
     return this.traveldataService.selectedTravelers;
 
+  }
+  continueWithBooking() {
+    this.location.back();
   }
 }
 

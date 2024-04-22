@@ -6,7 +6,10 @@ import { ConfirmBookingModalComponent } from '../confirm-booking-modal/confirm-b
 import { TraveldataService } from '../services/traveldata.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { FormGroup } from '@angular/forms';
+import { AuthService } from '../shared/auth.service';
+
+
+
 
 @Component({
   selector: 'app-package-detail',
@@ -14,13 +17,13 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./package-detail.component.css']
 })
 export class PackageDetailComponent implements OnInit {
-  currentDate: string;
-  searchForm: FormGroup;
-  selectedTravelers: number = 1; // Default to 1 if not defined
+  selectedTravelers: number;
   selectedDate: string;
   package: TourPackage | undefined;
   totalCost: number = 0;
   costPerPerson: number;
+  hasTravelersAdded: boolean = false;
+  cnfrm: string = "Add Travelers to proceed with Confirmation";
 
   @ViewChild(ConfirmBookingModalComponent) confirmModal: ConfirmBookingModalComponent;
 
@@ -29,8 +32,11 @@ export class PackageDetailComponent implements OnInit {
     private tourPackagesService: TourPackagesService,
     private traveldataService: TraveldataService,
     private afs: AngularFirestore,
-    private afAuth: AngularFireAuth
-  ) {}
+    private afAuth: AngularFireAuth,
+    private authService : AuthService
+  ) {
+    this.authService = authService;
+  }
 
   ngOnInit() {
     const packageId = this.route.snapshot.paramMap.get('id');
@@ -43,8 +49,7 @@ export class PackageDetailComponent implements OnInit {
           this.costPerPerson = tourPackage.costPerPerson;
 
           this.traveldataService.getSelectedSearchDetails().subscribe((details) => {
-            this.selectedTravelers = details.travelers || 1; // Default to 1 if not defined
-            this.currentDate = this.getCurrentDate();
+            this.selectedTravelers = details.travelers;
             this.selectedDate = details.date;
             this.calculateTotal();
           });
@@ -53,19 +58,8 @@ export class PackageDetailComponent implements OnInit {
       }
     }
   }
-
-  getCurrentDate_(): string {
-       const today = new Date();
-      return today.toISOString().split('T')[0];
-    
-  }
-  getCurrentDate(): string {
-    if (this.selectedDate) {
-      return this.selectedDate;
-    } else {
-      const today = new Date();
-      return today.toISOString().split('T')[0];
-    }
+  onTravelersAdded() {
+    this.hasTravelersAdded = true;
   }
 
   calculateTotal() {
@@ -73,7 +67,10 @@ export class PackageDetailComponent implements OnInit {
       this.totalCost = this.costPerPerson * this.selectedTravelers;
     }
   }
-
+ 
+  onClick() {
+    this.buttonClicked = true;
+  }
   openConfirmBookingModal() {
     const bookingData = {
       packageName: this.package?.packageName,
@@ -103,17 +100,7 @@ export class PackageDetailComponent implements OnInit {
   handleConfirmation({ email, phone }: { email: string; phone: string }) {
     console.log('Booking confirmed for:', email, phone);
   }
-
-  updateSelectedDate(event: any) {
-    this.selectedDate = event.target.value;
-  }
-
-  updateSelectedTravelers(event: any) {
-    const value = (event.target as HTMLInputElement).value;
-    const parsedValue = parseInt(value, 10);
-    if (!isNaN(parsedValue)) {
-      this.selectedTravelers = parsedValue;
-      this.calculateTotal(); // Recalculate total cost
-    }
+  get isLoggedIn() {
+    return this.authService.isLoggedIn();
   }
 }
