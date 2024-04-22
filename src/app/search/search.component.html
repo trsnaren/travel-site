@@ -10,7 +10,7 @@
         <input type="date" class="input-field" id="check-in" formControlName="date" [min]="currentDate"
           placeholder="Check-in Date">
         <span class="vertical-line"></span>
-        <input type="number" class="input-field short" id="travelers" formControlName="travelers"
+        <input type="number" class="input-field short" id="travelers" formControlName="travelers" [max]=15
           placeholder="Travelers">
       </div>
       <button class="find-tours-btn" type="submit" [disabled]="!searchForm.valid" [ngClass]="{'enabled': searchForm.valid}"
