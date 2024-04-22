@@ -38,6 +38,11 @@ export class MybookingsComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  getCurrentDate(): Date {
+    return new Date();
+  }
+
   cancelBooking(bookingId: string) {
     this.afAuth.currentUser.then((user) => {
       if (user) {
@@ -55,6 +60,4 @@ export class MybookingsComponent implements OnInit {
       console.error('Error getting current user:', error);
     });
   }
-  
-  
 }
