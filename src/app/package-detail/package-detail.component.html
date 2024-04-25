@@ -35,18 +35,10 @@
       <p *ngIf="totalCost != 0"> <b>Total Cost:</b> $ {{totalCost}} </p>
       <!-- <div class="button-container" style="display: flex; justify-content: center;">
         <button class="confirm-button" routerLink="/trav-info" (click)="onTravelersAdded()">Add Travelers</button>
-    
-       
-       
-        <div style="display: flex; flex-direction: column; justify-content: center;">
-          <small style="color: red;" *ngIf="buttonClicked">Please Login before booking!</small>
-          <button class="confirm-button" *ngIf="!isLoggedIn" (click)="onClick()">Confirm Booking</button>
-        </div>
 
-        <button class="confirm-button" *ngIf="isLoggedIn" (click)="openConfirmBookingModal()" [disabled]="!onTravelersAdded" [title]="cnfrm">Confirm Booking</button>
-      </div> -->
      
       <app-confirm-booking-modal (confirmation)="handleConfirmation($event)"[packageName]="package?.packageName || ''"></app-confirm-booking-modal>
+
  
     </div>
   </div>

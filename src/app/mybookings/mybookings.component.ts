@@ -43,14 +43,6 @@ export class MybookingsComponent implements OnInit {
 
   ngOnInit(): void {}
 
-   getCurrentDate(): Date {
-    return new Date();
-  }
- 
-  get isLoggedIn() {
-    return this.authService.isLoggedIn();
-  }
-  
   cancelBooking(bookingId: string) {
     this.afAuth.currentUser.then((user) => {
       if (user) {
