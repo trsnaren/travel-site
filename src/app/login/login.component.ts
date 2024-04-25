@@ -32,7 +32,7 @@ export class LoginComponent {
     }
 
     this.auth.login(this.email, this.password);
-
+    alert("Logged In Successfully!")
     this.clearFields();
   }
 
@@ -43,7 +43,9 @@ export class LoginComponent {
     }
 
     this.auth.register(this.email, this.password, this.username)
+   
       .then(() => {
+      
         this.clearFields();
       })
       .catch(error => {

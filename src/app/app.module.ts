@@ -59,6 +59,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { WeatherComponent } from './weather/weather.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ExploreWeatherComponent } from './explore-weather/explore-weather.component';
+import { CdialogComponent } from './cdialog/cdialog.component';
 
 
 
@@ -97,6 +98,7 @@ import { ExploreWeatherComponent } from './explore-weather/explore-weather.compo
     MybookingsComponent,
     WeatherComponent,
     ExploreWeatherComponent,
+    CdialogComponent,
 
     // ParallaxEffectComponent,
   ],

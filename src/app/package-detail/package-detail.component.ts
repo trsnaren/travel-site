@@ -31,6 +31,7 @@ export class PackageDetailComponent implements OnInit {
   buttonClicked : boolean = false;
   hasTravelersAdded: boolean = false;
   secondFormGroup: FormGroup;
+  isLinear : boolean = false;
   cnfrm: string = "Add Travelers to proceed with Confirmation";
  
   @ViewChild(ConfirmBookingModalComponent) confirmModal: ConfirmBookingModalComponent;

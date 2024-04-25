@@ -47,6 +47,7 @@
 
 .navbar-brand{
   margin-top:22px;
+  margin-right: 0px;
 }
 .navbar .navbar-nav .nav-link {
   position: relative; 

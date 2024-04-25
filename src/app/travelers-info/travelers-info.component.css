@@ -1,5 +1,5 @@
 .travelers-form {
-  max-width: 400px;
+  width: 600px;
   margin: 0 auto;
   padding: 2rem;
   background-color: #f8f9fa;
@@ -42,4 +42,7 @@
 
 .travelers-table .btn {
   margin-right: 0.5rem;
+}
+.big{
+  display: flex;
 }
