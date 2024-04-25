@@ -20,9 +20,11 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileResolver } from './guards/profile.resolver';
 import { MybookingsComponent } from './mybookings/mybookings.component';
+import { WeatherComponent } from './weather/weather.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
+  {path: 'weather', component: WeatherComponent},
   {path:'home',component:HomeComponent},
   {path: 'destinations', component: DestinationComponent},
   { path: 'destinations/:regionId', component: DestinationComponent },

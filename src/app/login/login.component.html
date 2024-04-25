@@ -18,6 +18,10 @@
             <input type="password" class="form-control" name="password" [(ngModel)]="password" placeholder="Password" required>
             <small class="text-danger">{{ passwordErrorMessage }}</small> <!-- Display password error message -->
           </div>
+          <div class="kia">
+            <p>New User to 7Rings?&nbsp;</p><p id="login" (click)="toggleForm('signup')">Register</p>
+          </div>
+          
           <button type="button" class="btn btn-info" (click)="login()">Login</button>
           <!-- Additional error message placeholders can be added here if needed -->
         </form>
@@ -43,8 +47,13 @@
             <input type="password" class="form-control" name="confirmPassword" [(ngModel)]="confirmPassword" placeholder="Confirm Password" required>
             <small class="text-danger">{{ confirmPasswordErrorMessage }}</small> <!-- Display confirm password error message -->
           </div>
+          <div class="kia">
+            <p>Aldready an user?&nbsp;</p><p id="login" (click)="toggleForm('login')">Log In</p>
+          </div>
           <button type="button" class="btn btn-info" (click)="register()">Register</button>
           <!-- Additional error message placeholders can be added here if needed -->
+       
+          
         </form>
       </div>
     </div>

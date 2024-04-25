@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import emailjs from '@emailjs/browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -35,6 +35,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ScrollEffectComponent } from './scroll-effect/scroll-effect.component';
 // import { ParallaxEffectComponent } from './parallax-effect/parallax-effect.component';
 import {MatSliderModule} from '@angular/material/slider';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatIconModule } from '@angular/material/icon';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { TestimonialsComponent } from './testimonials/testimonials.component';
 import { TypeWriterComponent } from './type-writer/type-writer.component';
@@ -53,6 +55,10 @@ import { ProfileComponent } from './profile/profile.component';
 import { MybookingsComponent } from './mybookings/mybookings.component';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { WeatherComponent } from './weather/weather.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ExploreWeatherComponent } from './explore-weather/explore-weather.component';
 
 
 
@@ -89,6 +95,8 @@ import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/compat/f
     LoginComponent,
     ProfileComponent,
     MybookingsComponent,
+    WeatherComponent,
+    ExploreWeatherComponent,
 
     // ParallaxEffectComponent,
   ],
@@ -106,6 +114,10 @@ import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/compat/f
     
     AngularFireAuthModule,
     AngularFirestoreModule,
+    MatStepperModule,
+    MatIconModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
     
     
    
@@ -113,9 +125,12 @@ import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/compat/f
     
    
   ],
-  providers: [
-  ],
-  bootstrap: [AppComponent]
+
+  providers: [],
+
+  bootstrap: [AppComponent],
+
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { 
   
