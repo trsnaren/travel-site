@@ -23,7 +23,6 @@ import { FormBuilder,Validators } from '@angular/forms';
 })
 export class PackageDetailComponent implements OnInit {
   currentDate: string;
-  searchForm: FormGroup;
   selectedTravelers: number = 1; // Default to 1 if not defined
   selectedDate: string;
   package: TourPackage | undefined;
@@ -60,7 +59,7 @@ export class PackageDetailComponent implements OnInit {
  
           this.traveldataService.getSelectedSearchDetails().subscribe((details) => {
             this.selectedTravelers = details.travelers || 1; // Default to 1 if not defined
-            this.currentDate = this.getCurrentDate();
+            this.currentDate = details.date || this.getCurrentDate();
             this.selectedDate = details.date;
             this.calculateTotal();
           });
@@ -69,19 +68,17 @@ export class PackageDetailComponent implements OnInit {
       }
     }
   }
+
   
   getCurrentDate_(): string {
        const today = new Date();
       return today.toISOString().split('T')[0];
    
   }
+
   getCurrentDate(): string {
-    if (this.selectedDate) {
-      return this.selectedDate;
-    } else {
-      const today = new Date();
-      return today.toISOString().split('T')[0];
-    }
+    const today = new Date();
+    return today.toISOString().split('T')[0];
   }
  
   calculateTotal() {
@@ -103,6 +100,7 @@ export class PackageDetailComponent implements OnInit {
  
     console.log("pkg", bookingData);
  
+
     this.afAuth.currentUser.then((user) => {
       if (user) {
         console.log("adding to db");
@@ -110,7 +108,7 @@ export class PackageDetailComponent implements OnInit {
         userBookingsRef.add(bookingData);
       }
     });
- 
+
     if (this.confirmModal) {
       this.confirmModal.openModal();
     }
