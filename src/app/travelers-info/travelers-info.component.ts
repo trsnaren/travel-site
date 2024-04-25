@@ -52,7 +52,9 @@ export class TravelersInfoComponent implements OnInit{
       mobileNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
       gender: ['', Validators.required]
     });
-  }
+  }  
+  
+  // return /^\d{10}$/.test(phone);
 
   // loadTravelers() {
   //   const savedTravelers = localStorage.getItem('travelers');

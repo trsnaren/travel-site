@@ -1,7 +1,17 @@
+h1,h2,h3,h4,h5,h6, p{
+  font-family: 'Cabin', sans-serif;
+}
+.title-main h1{
+  font-family: 'Cabin', sans-serif;
+  font-size: 2.5rem;
+}
 .title-main{
-  padding-top: 20px;
+  padding: 30px;
+  
   flex: content;
   text-align: center;
+  font-size: 1.12rem;
+  font-family: 'Cabin', sans-serif;
 }
 
 .title-main p{

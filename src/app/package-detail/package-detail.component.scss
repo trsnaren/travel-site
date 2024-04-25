@@ -1,5 +1,17 @@
 @import '../../../node_modules/@angular/material/prebuilt-themes/indigo-pink.css';
 
+h1,h2,h3,h4,h5,h6, p{
+  font-family: 'Cabin', sans-serif;
+  line-height: 1.2;
+}
+
+button{
+  margin-top: 20px;
+  margin-right: 20px ;
+}
+p{
+  font-size: medium;
+}
 
 .package-details {
   display: flex;
@@ -79,4 +91,17 @@ h1 {
   margin-bottom: 1.5rem;
   font-weight: 700;
   text-align: center;
+}
+
+.mat-stepper{
+  background-color: #e8e6e3; 
+}
+
+.input-field.short {
+  width: 20%;
+  /* Adjust the width as needed */
+}
+ 
+.input-field.datee{
+  width: 41%;
 }

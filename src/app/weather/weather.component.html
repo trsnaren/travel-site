@@ -35,7 +35,7 @@
       
       <div class="weatherdeets" *ngIf = "weatherDetails">
           <h3>Weather in {{ selectedCountry }}, {{ selectedRegion }} right now:</h3>
-          <p>Temperature: {{ weatherDetails.main.temp - 273.15 | number:'1.0-2' }} °C</p>
+          <p>Temperature: {{ weatherDetails.main.temp| number:'1.0-2' }} K</p>
           <p>Weather: {{ weatherDetails.weather[0].description }}</p>
           <p>Humidity: {{ weatherDetails.main.humidity }}%</p>
           <p>Wind Speed: {{ weatherDetails.wind.speed }} m/s</p>

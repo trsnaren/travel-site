@@ -16,14 +16,14 @@ app-navbar {
 }
 
 /* Main Content */
-.bookings-container {
+.bookings-container  {
+ 
+
   max-width: 900px;
   margin: 0 auto; /* Center the content */
   padding: 20px; /* Add some padding */
   background-color: #f9f9f9; /* Light background color */
-  border: 1px solid #ddd; /* Subtle border */
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+  
 }
 
 /* Booking Items */
@@ -42,7 +42,14 @@ app-navbar {
 }
 
 /* Booking Information */
+.bookings-container h2 {
+  font-family: 'Cabin', sans-serif;
+  font-size: 2.5em;
+  margin-bottom: 10px; /* Space below the heading */
+}
+
 .bookings-container h3 {
+  font-family: 'Cabin', sans-serif;
   font-size: 1.5em;
   margin-bottom: 10px; /* Space below the heading */
 }

@@ -2,12 +2,15 @@
     background-color: #e8e6e3;
     text-align: center;
     padding: 20px;
+    font-family: 'Cabin', sans-serif;
   }
   
   .weather-invite h2 {
     color: #333;
     margin-bottom: 20px;
     font-weight: 500;
+    font-family: 'Cabin', sans-serif;
+    font-size: x-large;
   }
   
   .weather-button {
