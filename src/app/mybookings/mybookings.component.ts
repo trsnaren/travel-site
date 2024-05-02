@@ -6,10 +6,11 @@ import { map, switchMap } from 'rxjs/operators';
 import { AuthService } from '../shared/auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CdialogComponent } from '../cdialog/cdialog.component';
+
 @Component({
-  selector: 'app-mybookings',
-  templateUrl: './mybookings.component.html',
-  styleUrls: ['./mybookings.component.css']
+  selector:'app-mybookings',
+  templateUrl:'./mybookings.component.html',
+  styleUrl:'./mybookings.component.css'
 })
 export class MybookingsComponent implements OnInit {
  
