@@ -28,7 +28,6 @@ export class MybookingsComponent implements OnInit {
         if (user) {
           const userBookingsRef = this.afs.collection(`bookings/${user.uid}/userBookings`).snapshotChanges();
           return userBookingsRef.pipe(
-            // Map snapshotChanges to get the document data along with the document ID
             map(actions => {
               return actions.map(a => {
                 const data = a.payload.doc.data();
